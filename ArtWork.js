@@ -19,12 +19,12 @@ init:function() {
     GAME.gravityOff = false;
     GAME.keyUp = true;
     GAME.previousPlatformNumber = -1;
+    GAME.videoContainers = [];
                             
 
     
                             //camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
-                            camera.position.z = 4000;//targetZ;
-                            camera.position.y = 0;
+
 
                             //scene.add( camera );*/
                            // GAME.player = new GAME.Player({ x:0, y:1000, z:0, health:100, lives:4, width:100, height:150} );
@@ -58,8 +58,33 @@ init:function() {
             }
             //GAME.gameplayMode = 3;
     }
-    GAME.pictures.push(new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length}));
+    var videoContainer = new GAME.VideoContainer({x:0, y:200, z:0, r: 1280});
+    var videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    GAME.videoContainers.push(videoContainer);
+/*  
+    GAME.pictures.push(new GAME.Picture({video: GAME.videos.reel, initialRotation: 0.0, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length}));
 
+    GAME.pictures.push(new GAME.Picture({video: GAME.videos.reel, initialRotation: -60, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length}));
+
+    GAME.pictures.push(new GAME.Picture({video: GAME.videos.reel, initialRotation: 60, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length}));
+
+    GAME.pictures.push(new GAME.Picture({video: GAME.videos.reel, initialRotation: -120, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length}));
+
+    GAME.pictures.push(new GAME.Picture({video: GAME.videos.reel, initialRotation: 120, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length}));
+
+    GAME.pictures.push(new GAME.Picture({video: GAME.videos.reel, initialRotation: -180, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length}));
+*/
    // GAME.pictures.push(new GAME.Picture({x:0, y:-441, z:0, width:750, height:882, map:GAME.Textures['3dEnv'].threeObj, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length}));
     //GAME.pictures.push(new GAME.Picture({x:0, y:-333, z:0, width:1000, height:666, map:GAME.Textures['LittleFoot'].threeObj, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length}));
 
@@ -75,6 +100,14 @@ init:function() {
     for (var i = 0; i < GAME.decorations.length; i++) {
         GAME.decorations[i].draw();
     }
+
+
+    for(var i = 0; i < GAME.videoContainers.length; i++) {
+        for (var j = 0; j < GAME.videoContainers[i].videos.length; j++) {
+            scene.add(GAME.videoContainers[i].videos[j].mesh);
+        }
+        //GAME.siteObjects.push(GAME.pictures[i]);
+    }
      for(var i = 0; i < GAME.siteObjects.length; i++) {
         scene.add(GAME.siteObjects[i].mesh);
     }
@@ -87,6 +120,9 @@ init:function() {
                            // GAME.player.updatePosition({});
                             for (var i = 0; i < GAME.siteObjects.length; i++) {
                                 GAME.siteObjects[i].updatePosition();
+                            }
+                            for(var i = 0; i < GAME.videoContainers.length; i++) {
+                                GAME.videoContainers[i].updatePosition();
                             }
     
 

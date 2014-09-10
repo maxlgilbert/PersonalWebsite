@@ -41,6 +41,7 @@
         <script src="gameFunctions.js"></script>
         <script src="Preloader.js"></script>
         <script src="textures.js"></script>
+        <script src="VideoContainer.js"></script>
 		
         
         
@@ -129,11 +130,11 @@
                 //light = new THREE.SpotLight( 0xFFFFFF, 1, 0,Math.PI/2, 2 );
                 //light = new THREE.DirectionalLight( 0xFFFFFF, 1, 0);
                 camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
-                camera.position.z = targetZ;
                 camera.position.y = 0;
+                camera.position.z = 6000;//targetZ;
                 scene.add( camera );
                 light = new THREE.PointLight( 0xFFFFFF, 1, 0);
-                light.position.z = 2000;
+                light.position.z = 3000;
                 scene.add(light);
                 
                 
@@ -283,10 +284,11 @@
 
                 
                 GAME.intersectsPlatforms = [];
-                for(var i =0; i < GAME.pictures.length; i++){
-                    if(ray.intersectObject( GAME.pictures[i].mesh).length > 0){
-                        console.log(i);
-                        GAME.pictures[i].PlayTrigger();
+                for(var i = 0; i < GAME.videoContainers.length; i++) {
+                    for (var j = 0; j < GAME.videoContainers[i].videos.length; j++) {
+                        if(ray.intersectObject( GAME.videoContainers[i].videos[j].mesh).length > 0){
+                            GAME.videoContainers[i].videos[j].PlayTrigger();
+                        }
                         //GAME.intersectsPlatforms[0]=(GAME.pictures[i]);
                     }
                 }

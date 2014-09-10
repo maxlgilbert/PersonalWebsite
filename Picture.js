@@ -9,6 +9,7 @@ GAME.Picture = function(params){
   this.mesh.material.side = THREE.DoubleSide;
   this.zMult = 1;
   this.dTheta = 0.0;
+  //this.mesh.rotation.y = Math.PI * params.initialRotation / 180;
 
 };
 
@@ -77,16 +78,28 @@ GAME.Picture.prototype.updatePosition = function() {
     //this.position.x = sign*xVal;
     //this.position.x = xVal;
     //this.position.z =this.zMult * Math.sqrt(r*r - xVal*xVal);//((this.position.x)*Math.tan(Math.acos((this.position.x)/1200)))-1200;
-    var rotationsPerWidth = 2;
-    var r = 1000;
+    
+
+
+/*
+    var rotationsPerWidth = .5;
+    var r = 2000;
+    var epsilon = .005;
     if (GAME.mouseDown) {
        this.dTheta = rotationsPerWidth*Math.PI * GAME.mouseDX/window.innerWidth;
+        if (Math.abs(this.dTheta) < epsilon) {
+            this.dTheta = 0.0;
+        }
     } else {
         this.dTheta /=1.05;
     }
     this.mesh.rotation.y += this.dTheta;
     this.position.x = -r * Math.cos (this.mesh.rotation.y + Math.PI/2);
     this.position.z = r * Math.sin (this.mesh.rotation.y + Math.PI/2);
+ */    
+
+
+
        /* if (this.position.x > r) {
             this.position.x = r;
         }
@@ -96,8 +109,8 @@ GAME.Picture.prototype.updatePosition = function() {
         //this.mesh.rotation.y = Math.asin(this.zMult*this.position.x/r);//(2.0*this.position.x/ (window.innerWidth));
 
         //this.mesh.material.opacity = this.position.z/1200 + 1;
-        this.bounds.left+= this.velocity.x;
+        /*this.bounds.left+= this.velocity.x;
         this.bounds.right+= this.velocity.x;
         this.bounds.top+= this.velocity.y;
-        this.bounds.bottom+= this.velocity.y;
+        this.bounds.bottom+= this.velocity.y;*/
 }
