@@ -131,10 +131,13 @@
                 //light = new THREE.DirectionalLight( 0xFFFFFF, 1, 0);
                 camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
                 camera.position.y = 0;
+                GAME.cameraTargetY = 0;
                 camera.position.z = 6000;//targetZ;
+                GAME.cameraTargetZ = 6000;
+                GAME.cameraTargetX = 0;
                 scene.add( camera );
                 light = new THREE.PointLight( 0xFFFFFF, 1, 0);
-                light.position.z = 3000;
+                light.position.z = 6000;
                 scene.add(light);
                 
                 
@@ -142,6 +145,7 @@
                 //scene.add(GAME.player.mesh);
                 GAME.currentLevel = GAME.artWork;
                 GAME.videos.reel = document.getElementById( 'demoreel' );
+                GAME.selectedVideoContainer = 1;
                 GAME.mouseDX = 0;
                 GAME.mouseDown = false;
                 GAME.loaded = false;
@@ -201,6 +205,7 @@
                 
                 renderer = new THREE.WebGLRenderer({ antialias: false});
 				renderer.setSize( window.innerWidth, window.innerHeight );
+                //renderer.setClearColor( 0x000000, 1 ); 
                 
                 
 				container.appendChild( renderer.domElement );
@@ -257,13 +262,21 @@
 
                 
                 GAME.intersectsPlatforms = [];
+                var selected = false;
                 for(var i = 0; i < GAME.videoContainers.length; i++) {
-                    GAME.videoContainers[i].selected = false;
+                    GAME.videoContainers[i].selected = 0;
                     for (var j = 0; j < GAME.videoContainers[i].videos.length; j++) {
-                        if(ray.intersectObject( GAME.videoContainers[i].videos[j].mesh).length > 0){
-                            GAME.videoContainers[i].selected = true;
+                        if (!selected) {
+                            if(ray.intersectObject( GAME.videoContainers[i].videos[j].mesh).length > 0){
+                                GAME.videoContainers[i].selected = 1;
+                                if (GAME.selectedVideoContainer === GAME.videoContainers[i].number) { 
+                                    GAME.videoContainers[i].selected = 2;
+                                }
+                                GAME.videoContainers[i].ClickFirst();
+                                selected = true;
+                                GAME.selectedVideoContainer = GAME.videoContainers[i].number;
+                            }
                         }
-                        //GAME.intersectsPlatforms[0]=(GAME.pictures[i]);
                     }
                 }
                 
@@ -304,11 +317,17 @@
                 for(var i = 0; i < GAME.videoContainers.length; i++) {
                     for (var j = 0; j < GAME.videoContainers[i].videos.length; j++) {
                         if(ray.intersectObject( GAME.videoContainers[i].videos[j].mesh).length > 0){
-                            GAME.videoContainers[i].videos[j].PlayTrigger();
+                            if (GAME.videoContainers[i].selected === 2){
+                                GAME.videoContainers[i].videos[j].PlayTrigger();
+                                //GAME.videoContainers[i].RotateTo({number:GAME.videoContainers[i].videos[j].number});
+                                GAME.videoContainers[i].ClickSecond();
+                            }
+                            return;
                         }
                         //GAME.intersectsPlatforms[0]=(GAME.pictures[i]);
                     }
                 }
+                GAME.cameraTargetZ = 6000;
                 
                 for (var i = 0; i < GAME.platforms.length; i++){
                     var plat = GAME.platforms[i];
@@ -452,8 +471,8 @@
                 };*/
                 
                 
-                light.position.x = camera.position.x;
-                light.position.y = camera.position.y+1000;
+                //light.position.x = camera.position.x;
+                //light.position.y = camera.position.y+1000;
                 
                 
                 

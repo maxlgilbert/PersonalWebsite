@@ -15,7 +15,10 @@ GAME.VideoContainer = function( params ) {
     this.count = 0;
     this.videos = [];
     this.dTheta = 0.0;
-    this.selected = false;
+    this.selected = 0;
+    this.number = params.number;
+    this.targetTheta = -1;
+    this.noZoom = params.noZoom;
 }
 
 GAME.VideoContainer.prototype = {
@@ -23,7 +26,7 @@ GAME.VideoContainer.prototype = {
 		var rotationsPerWidth = .5;
         //this.r = 2000;
         var epsilon = .005;
-        if (GAME.mouseDown && this.selected) {
+        if (GAME.mouseDown && this.selected >= 1) {
            this.dTheta = rotationsPerWidth*Math.PI * GAME.mouseDX/window.innerWidth;
             if (Math.abs(this.dTheta) < epsilon) {
                 this.dTheta = 0.0;
@@ -31,12 +34,15 @@ GAME.VideoContainer.prototype = {
         } else {
             this.dTheta /=1.05;
         }
+        if (this.targetTheta > 0) {
+            //this.dTheta = (this.targetTheta - this.videos[0].mesh.rotation.y)*.1;
+        }
         for (var i = 0; i < this.videos.length; i++) {
             var video = this.videos[i];
             video.mesh.rotation.y += this.dTheta;
             video.position.x = -this.r * Math.cos (video.mesh.rotation.y + Math.PI/2);
             video.position.z = this.r * Math.sin (video.mesh.rotation.y + Math.PI/2);
-            video.mesh.material.opacity = (video.position.z + this.r)/(this.r);
+            video.mesh.material.opacity = (video.position.z*.9 + this.r)/(this.r);
         }
     },
     AddVideo : function(params) {
@@ -48,6 +54,23 @@ GAME.VideoContainer.prototype = {
             video.position.y = this.position.y;
         }
     },
+    MoveCameraTo : function(params) {
+        GAME.cameraTargetX = params.x;// || GAME.cameraTargetX;
+        GAME.cameraTargetY = params.y;// || GAME.cameraTargetY;
+        GAME.cameraTargetZ = params.z;// || GAME.cameraTargetZ;
+    },
+    ClickFirst : function() {
+        this.MoveCameraTo({x:GAME.cameraTargetX, y:this.position.y, z:GAME.cameraTargetZ});
+    },
+    ClickSecond : function (){
+        this.MoveCameraTo({x:GAME.cameraTargetX, y:this.position.y, z:GAME.cameraTargetZ});
+        if (!this.noZoom) {
+            GAME.cameraTargetZ = 2750;
+        }
+    },
+    RotateTo : function(params) {
+        //this.targetTheta = Math.PI * params.number * (360.0/(this.videos.length)) / 180;
+    }
    /* Intersects : function(params) {
         var xValue = params.x;
         var yValue = params.y;
