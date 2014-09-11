@@ -58,8 +58,38 @@ init:function() {
             }
             //GAME.gameplayMode = 3;
     }
-    var videoContainer = new GAME.VideoContainer({x:0, y:200, z:0, r: 1280});
+    var videoContainer = new GAME.VideoContainer({x:0, y:800, z:0, r: 1500, height: 1280});
     var videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    GAME.videoContainers.push(videoContainer);
+
+    videoContainer = new GAME.VideoContainer({x:0, y:0, z:0, r: 1500, height: 1280});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
+    videoContainer.AddVideo({video:videoToAdd});
+    GAME.videoContainers.push(videoContainer);
+
+    videoContainer = new GAME.VideoContainer({x:0, y:-800, z:0, r: 1500, height: 1280});
+    videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
     videoContainer.AddVideo({video:videoToAdd});
     videoToAdd = new GAME.Picture({video: GAME.videos.reel, trigger: GAME.play, x:0, y:-360, z:0, width:1280, height:720, map:textureD, color:0xFFFFFF, velocityX:0, velocityY:0, pathLength:0, number:GAME.pictures.length});
     videoContainer.AddVideo({video:videoToAdd});

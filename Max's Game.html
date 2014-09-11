@@ -249,6 +249,23 @@
             function onDocumentMouseDown( event ) {
                 GAME.mouseDown = true;
                 event.preventDefault();
+                GAME.intersectsPlatforms = [];
+                var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+                projector.unprojectVector( vector, camera );
+                
+                var ray = new THREE.Raycaster( camera.position, vector.subSelf( camera.position ).normalize() );
+
+                
+                GAME.intersectsPlatforms = [];
+                for(var i = 0; i < GAME.videoContainers.length; i++) {
+                    GAME.videoContainers[i].selected = false;
+                    for (var j = 0; j < GAME.videoContainers[i].videos.length; j++) {
+                        if(ray.intersectObject( GAME.videoContainers[i].videos[j].mesh).length > 0){
+                            GAME.videoContainers[i].selected = true;
+                        }
+                        //GAME.intersectsPlatforms[0]=(GAME.pictures[i]);
+                    }
+                }
                 
                 
                /* var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
