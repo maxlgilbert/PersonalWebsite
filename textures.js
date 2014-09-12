@@ -19,5 +19,8 @@ GAME.Textures = {
     'Resume' : {src:'Textures/Resume.png', threeObj:undefined},
     'Created' : {src:'Textures/Created.png', threeObj:undefined},
     'with' : {src:'Textures/with.png', threeObj:undefined},
-    'threejs' : {src:'Textures/threejs.png', threeObj:undefined}
+    'threejs' : {src:'Textures/threejs.png', threeObj:undefined},
+    'GamesandAIResearch' : {src:'Textures/GamesandAIResearch.png', threeObj:undefined},
+    'GraphicsandSimulation' : {src:'Textures/GraphicsandSimulation.png', threeObj:undefined},
+    '3DModeling' : {src:'Textures/3DModeling.png', threeObj:undefined}
 }
