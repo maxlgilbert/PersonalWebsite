@@ -14,6 +14,7 @@ GAME.VideoContainer = function( params ) {
     this.rotation = 0.0;
     this.count = 0;
     this.videos = [];
+    this.texts = [];
     this.dTheta = 0.0;
     this.selected = 0;
     this.number = params.number;
@@ -43,9 +44,20 @@ GAME.VideoContainer.prototype = {
             video.position.x = -this.r * Math.cos (video.mesh.rotation.y + Math.PI/2);
             video.position.z = this.r * Math.sin (video.mesh.rotation.y + Math.PI/2);
             video.mesh.material.opacity = (video.position.z*.9 + this.r)/(this.r);
+            for (var j = 0; j < video.texts.length; j++) {
+                video.texts[j].mesh.material.opacity = (Math.abs(180-Math.abs(((video.mesh.rotation.y)*180/Math.PI)%360))-160)/20; 
+            }
         }
     },
     AddVideo : function(params) {
+        if (params.texts) {
+            for(var i = 0; i < params.texts.length; i++){
+                //this.texts.push(params.text);
+                params.texts[i].mesh.position.y = this.position.y;
+                params.video.texts.push(params.texts[i]);
+                scene.add(params.texts[i].mesh);
+            }
+        }
         params.video.number = this.videos.length;
         this.videos.push(params.video);
         for (var i = 0; i < this.videos.length; i++) {
@@ -65,7 +77,7 @@ GAME.VideoContainer.prototype = {
     ClickSecond : function (){
         this.MoveCameraTo({x:GAME.cameraTargetX, y:this.position.y, z:GAME.cameraTargetZ});
         if (!this.noZoom) {
-            GAME.cameraTargetZ = 2750;
+           // GAME.cameraTargetZ = 2750; PUT BACK???
         }
     },
     RotateTo : function(params) {

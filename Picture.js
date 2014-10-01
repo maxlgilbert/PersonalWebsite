@@ -9,6 +9,7 @@ GAME.Picture = function(params){
   this.mesh.material.side = THREE.DoubleSide;
   this.zMult = 1;
   this.dTheta = 0.0;
+  this.texts = [];
   //this.mesh.rotation.y = Math.PI * params.initialRotation / 180;
 
 };
