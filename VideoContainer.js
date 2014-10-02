@@ -45,7 +45,7 @@ GAME.VideoContainer.prototype = {
             video.position.z = this.r * Math.sin (video.mesh.rotation.y + Math.PI/2);
             video.mesh.material.opacity = (video.position.z*.9 + this.r)/(this.r);
             for (var j = 0; j < video.texts.length; j++) {
-                video.texts[j].mesh.material.opacity = (Math.abs(180-Math.abs(((video.mesh.rotation.y)*180/Math.PI)%360))-160)/20; 
+                video.texts[j].mesh.material.opacity = (Math.abs(180-Math.abs(((video.mesh.rotation.y)*180/Math.PI)%360))-150)/30; 
             }
         }
     },
